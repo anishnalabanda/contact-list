@@ -76,7 +76,7 @@ class ContactsList extends Component {
         }
         return (
             <div className='contacts-main'>
-                <div className='contacts-outer-box' onresize={()=>this.onContactsListResize()}>
+                <div className='contacts-outer-box'>
                     <div className='contacts-tabs'>
                         {
                             this.state.tabs.map((tab, index) => (
@@ -97,7 +97,7 @@ class ContactsList extends Component {
                         <div className='contacts'>
                             {
                                 this.leftColumn.map((contact, index) => (
-                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactShowChange(event, contact, 'left')}>
+                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactShowChange(event, contact)}>
                                         <span id='name' className='contact-first-name'>{`${contact.name.first},`}&nbsp;</span><span id='name' className='contact-last-name'>{contact.name.last}</span>
                                     </div>
                                 ))
@@ -106,7 +106,7 @@ class ContactsList extends Component {
                         <div className='contacts'>
                             {
                                 this.rightColumn.map((contact, index) => (
-                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactShowChange(event, contact, 'right')}>
+                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactShowChange(event, contact)}>
                                         <span id='name' className='contact-first-name'>{`${contact.name.first},`}&nbsp;</span><span id='name' className='contact-last-name'>{contact.name.last}</span>
                                     </div>
                                 ))
@@ -149,7 +149,7 @@ class ContactsList extends Component {
         this.setState({ tabs, showContactCard: false });
     }
 
-    onContactShowChange(event, contact, row) {
+    onContactShowChange(event, contact) {
         let target = event.target;
         if (target.id === 'name') {
             target = event.target.parentElement;
@@ -158,13 +158,6 @@ class ContactsList extends Component {
         this.position = { 'left': pos.left, 'top': pos.top + 55, 'width': pos.width - 30 };
         this.selectedContact = contact;
         this.openContactCard();
-    }
-
-    onContactsListResize(){
-        console.log('on resize!!');
-        if(showContactCard===true){
-            this.closeContactCard();
-        }
     }
 
     openContactCard() {

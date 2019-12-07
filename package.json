@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.js -p",
     "dev": "webpack-dev-server --inline --host localhost --port 3000 --open --config webpack.config.js",
-    "start": "serve -s build"
+    "start": "serve -s build",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -32,5 +33,13 @@
       "env",
       "react"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.5",
+    "@babel/preset-react": "^7.7.4",
+    "@testing-library/react": "^9.3.2",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "react-test-renderer": "^16.12.0"
   }
 }

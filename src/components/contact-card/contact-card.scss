@@ -58,7 +58,7 @@ $font-color: #e7e7de;
         flex-direction: row;
 
         .contact-detail-key {
-          flex: 1.5;
+          flex: 2;
           padding: 0.5rem;
           text-align: right;
           min-width: 3rem;
@@ -113,6 +113,7 @@ $font-color: #e7e7de;
     right: 5% !important;
     top: 5% !important;
     bottom: 5% !important;
+    width: auto !important;
   }
 
   @media (min-width: 320px) and (max-width: 480px) {
@@ -120,5 +121,6 @@ $font-color: #e7e7de;
     right: 5% !important;
     top: 5% !important;
     bottom: 5% !important;
+    width: auto !important;
   }
 }
