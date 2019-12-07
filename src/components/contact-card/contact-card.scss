@@ -1,0 +1,124 @@
+$contact-background: #263859;
+$font-color: #e7e7de;
+
+.contact-card {
+  position: absolute;
+  margin: auto;
+  padding: 1rem;
+  background: $contact-background;
+  z-index: 20;
+  box-shadow: 0px 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+  .contact-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+
+    .contact-display {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .contact-photo {
+        img {
+          border-radius: 5rem;
+          width: 7.5rem;
+        }
+      }
+      .contact-name {
+        word-break: break-word;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        border-bottom: 1px solid $font-color;
+
+        .contact-last-name {
+          font-size: 1.1rem;
+          text-transform: uppercase;
+          font-weight: 400;
+        }
+        .contact-first-name {
+          font-size: 1.1rem;
+          text-transform: capitalize;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .contact-info {
+      flex: 6;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      .contact-info-row {
+        display: flex;
+        flex-direction: row;
+
+        .contact-detail-key {
+          flex: 1.5;
+          padding: 0.5rem;
+          text-align: right;
+          min-width: 3rem;
+          font-weight: 400;
+          font-size: 0.9rem;
+          text-transform: capitalize;
+        }
+
+        .contact-detail-value {
+          flex: 3;
+          padding: 0.5rem;
+          text-align: left;
+          word-break: break-all;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    svg {
+      padding: 0.5rem;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .contact-details {
+      flex-direction: row;
+      .contact-display {
+        border-right: 1px solid $font-color;
+        .contact-name {
+          border-bottom: none;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .contact-info {
+        .contact-info-row {
+          .contact-detail-key {
+            flex: 1.1;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    left: 10% !important;
+    right: 5% !important;
+    top: 5% !important;
+    bottom: 5% !important;
+  }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    left: 10% !important;
+    right: 5% !important;
+    top: 5% !important;
+    bottom: 5% !important;
+  }
+}
