@@ -83,12 +83,11 @@ class ContactsList extends Component {
                                 <div
                                     key={index}
                                     className={`contact-tab ${tab.style}`}
-                                    onClick={() => this.onContactListChange(index)}
-                                    disabled={tab.style === 'disabled'}
+                                    onClick={() => this.onContactListChange(index, tab)}
                                 >
                                     <div className='contact-tab-data'>
-                                        <span className='contact-index'>{tab.value}</span>
-                                        <span className='contact-index-number'>{tab.contacts}</span>
+                                        <span className={`contact-index ${tab.style}`}>{tab.value}</span>
+                                        <span className={`contact-index-number ${tab.style}`}>{tab.contacts}</span>
                                     </div>
                                 </div>
                             ))
@@ -130,6 +129,9 @@ class ContactsList extends Component {
     }
 
     onContactListChange(contactIndex, contact) {
+        if(contact.style === 'disabled'){
+            return;
+        }
         const tabs = this.state.tabs;
         this.leftColumn = [];
         this.rightColumn = [];

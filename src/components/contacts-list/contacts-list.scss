@@ -60,6 +60,10 @@ span {
           margin-left: -0.25rem;
           margin-right: -0.25rem;
           z-index: 11;
+
+          &.disabled {
+            background-color: $tab-background;
+          }
         }
 
         &.selected {
@@ -67,8 +71,11 @@ span {
           margin-left: -0.3rem;
           margin-right: -0.3rem;
           z-index: 10;
-          border-bottom: none;
           box-shadow: 0px 5px 5px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        &.disabled {
+          background-color: $tab-background;
         }
 
         .contact-tab-data {
@@ -79,11 +86,17 @@ span {
             flex: 1;
             font-size: 1rem;
             font-weight: 400;
+            &.disabled {
+              color: grey;
+            }
           }
           .contact-index-number {
             flex: 1;
             font-size: 0.6rem;
             text-align: right;
+            &.disabled {
+              color: grey;
+            }
           }
         }
       }
