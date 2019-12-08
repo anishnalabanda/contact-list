@@ -42,7 +42,7 @@ $ cd contact-list
 
 contact-list is dockerized, if you have a docker available can simply deploy using single command:
 
-  docker-compose up
+  $ docker-compose up
 
 The application will be up and running, and will be listening on port 5000.
 
@@ -52,16 +52,17 @@ The application will be up and running, and will be listening on port 5000.
 
 Install node dependencies:
 
-  npm install
+  $ npm install
 
 To run in dev enviroment:
 
-  npm run dev
+  $ npm run dev
 
 To run in production environment:
 
-  npm run build
-  npm start
+  $ npm run build
+  
+  $ npm start
 
 To open Contact List application:
 
