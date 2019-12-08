@@ -7,22 +7,29 @@ class ContactsList extends Component {
 
     constructor(props) {
         super(props);
+        //Configuration used to display contacts
         this.configJson = {
             "title": "Contact List",
             "userUrl": "https://api.randomuser.me",
             "numberCards": 120,
             "tabs": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
         };
+
+        //Main variables are initialized only once.
         this.contactList = {};
         this.leftColumn = [];
         this.rightColumn = [];
         this.selectedTab = {};
+        this.contactPosition={};
+
+        //Sets the default state of the component
         this.state = {
             tabs: [],
             showContactCard: false
         };
     }
 
+    //prepares contact list by segregating the contacts based on last name
     prepareContactList(results) {
         results.forEach(contact => {
             const letter = contact.name.last[0].toLowerCase();
@@ -35,6 +42,7 @@ class ContactsList extends Component {
         });
     }
 
+    //sets the state to render the tabs
     setTabsData() {
         const tabs = [];
         this.configJson.tabs.forEach(tab => {
@@ -50,6 +58,7 @@ class ContactsList extends Component {
         this.setState({ tabs });
     }
 
+    //Retrieves the contacts list by making an API call
     getRandomContacts() {
         const request = Api.makeRemoteRequest(this.configJson);
         console.log('request :: ', request);
@@ -62,7 +71,8 @@ class ContactsList extends Component {
                 console.log('error :: ', error);
             });
     }
-
+    
+    //life cycle methods called once when component is mounted
     componentDidMount() {
        this.getRandomContacts();
     }
@@ -83,7 +93,7 @@ class ContactsList extends Component {
                                 <div
                                     key={index}
                                     className={`contact-tab ${tab.style}`}
-                                    onClick={() => this.onContactListChange(index, tab)}
+                                    onClick={() => this.onTabClick(index, tab)}
                                 >
                                     <div className='contact-tab-data'>
                                         <span className={`contact-index ${tab.style}`}>{tab.value}</span>
@@ -97,7 +107,7 @@ class ContactsList extends Component {
                         <div className='contacts'>
                             {
                                 this.leftColumn.map((contact, index) => (
-                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactShowChange(event, contact)}>
+                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactClick(event, contact)}>
                                         <span id='name' className='contact-first-name'>{`${contact.name.first},`}&nbsp;</span><span id='name' className='contact-last-name'>{contact.name.last}</span>
                                     </div>
                                 ))
@@ -106,7 +116,7 @@ class ContactsList extends Component {
                         <div className='contacts'>
                             {
                                 this.rightColumn.map((contact, index) => (
-                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactShowChange(event, contact)}>
+                                    <div key={contact.name.first + index} id='contact' className='contact' onClick={(event) => this.onContactClick(event, contact)}>
                                         <span id='name' className='contact-first-name'>{`${contact.name.first},`}&nbsp;</span><span id='name' className='contact-last-name'>{contact.name.last}</span>
                                     </div>
                                 ))
@@ -117,7 +127,7 @@ class ContactsList extends Component {
                 <div>
                     {this.state.showContactCard ?
                         <ContactCard
-                            position={this.position}
+                            position={this.contactPosition}
                             contact={this.selectedContact}
                             closeContactCard={this.closeContactCard.bind(this)}
                         />
@@ -128,8 +138,9 @@ class ContactsList extends Component {
         );
     }
 
-    onContactListChange(contactIndex, contact) {
-        if(contact.style === 'disabled'){
+    //event that is triggered when tab is clicked
+    onTabClick(contactIndex, tab) {
+        if(tab.style === 'disabled'){
             return;
         }
         const tabs = this.state.tabs;
@@ -149,23 +160,26 @@ class ContactsList extends Component {
         this.setState({ tabs, showContactCard: false });
     }
 
-    onContactShowChange(event, contact) {
+    //event that is triggered when contact is clicked
+    onContactClick(event, contact) {
         let target = event.target;
         if (target.id === 'name') {
             target = event.target.parentElement;
         }
         const pos = target.getClientRects()[0];
-        this.position = { 'left': pos.left, 'top': pos.top + 55, 'width': pos.width - 30 };
+        this.contactPosition = { 'left': pos.left, 'top': pos.top + 55, 'width': pos.width - 30 };
         this.selectedContact = contact;
         this.openContactCard();
     }
 
+    //sets the state to open the contact card
     openContactCard() {
         this.setState({
             showContactCard: true
         });
     }
 
+    //sets the state to close the contact card
     closeContactCard() {
         this.setState({
             showContactCard: false
