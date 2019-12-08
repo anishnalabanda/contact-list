@@ -41,6 +41,7 @@ span {
       overflow-y: auto;
       overflow-x: hidden;
       background-color: transparent;
+      max-height: calc(100vh - 5rem);
 
       .contact-tab {
         flex: 1;
