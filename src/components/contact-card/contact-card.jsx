@@ -35,7 +35,7 @@ class ContactCard extends Component {
                             <span className='contact-detail-value'>{contact.location.street.number} {contact.location.street.name}</span>
                         </div>
                         <div className='contact-info-row'>
-                            <span className='contact-detail-key'>number</span>
+                            <span className='contact-detail-key'>city</span>
                             <span className='contact-detail-value'>{contact.location.city}</span>
                         </div>
                         <div className='contact-info-row'>
